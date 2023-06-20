@@ -1,0 +1,155 @@
+﻿@model IEnumerable<LabMaintanance3.Models.Complain>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/stuff_layout.cshtml";
+}
+
+<style>
+    /* Custom styles */
+    .table-container {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+        .table-container .table {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .table-container th,
+        .table-container td {
+            padding: 10px;
+        }
+
+        .table-container th {
+            background-color: #f5f5f5;
+        }
+
+        .table-container img {
+            max-width: 200px;
+            height: 100px;
+        }
+
+    .btn-action {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+    .btn-info {
+        color: #fff;
+        background-color: #5bc0de;
+        border-color: #46b8da;
+    }
+</style>
+
+<h2 class="text-center">Complain List</h2>
+
+<p class="text-center">
+    @Html.ActionLink("Submit New Complain", "Create", "StuffComplains", null, new { @class = "btn btn-primary" })
+</p>
+<div class="row justify-content-end">
+    <div class="col-auto">
+        <a class="nav-link btn btn-sm btn-bold btn-smooth btn-success" href="@Url.Action("Index", "StuffTech2")" type="button">Actions</a>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+
+<div class="table-container">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Get details
+            </th>
+            <th>
+                Name_Of_the_Item
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Condition
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Priority
+            </th>
+            <th>
+                Repaired_Staus
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", "StuffComplains", new { id = item.complain_id }, new { @class = "btn btn-info btn-action" })
+                    <a href="@Url.Action("Create", "StuffTech2", new { id = item.complain_id })" class="btn btn-primary btn-action" id="take-action-@item.complain_id">Take Action</a>
+
+                    @Html.ActionLink("Edit", "Edit", "StuffComplains", new { id = item.complain_id }, new { @class = "btn btn-primary" })
+                </td>
+
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.Name_Of_the_Item)</span>
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(modelItem => item.description)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    @if (item.image_data != null)
+                    {
+                        var base64Image = Convert.ToBase64String(item.image_data);
+                        var imgSrc = $"data:image;base64,{base64Image}";
+                        <img src="@imgSrc" alt="Complain Image" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority.priority1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Repaired_Staus.Status)
+                </td>
+               
+              
+            </tr>
+        }
+    </table>
+</div>

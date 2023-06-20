@@ -1,0 +1,128 @@
+﻿@model LabMaintanance3.Models.Complain
+
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .details-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+        .details-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .details-container h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .details-container hr {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+    .dl-horizontal dt {
+        width: 160px;
+    }
+
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+
+    .complain-image {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .details-buttons {
+        margin-top: 20px;
+    }
+
+        .details-buttons a {
+            margin-right: 10px;
+        }
+</style>
+
+<div class="details-container">
+    <div>
+        <h2>Complain Details</h2>
+        <hr />
+        <a href="@Url.Action("Create", "StuffTech2", new { id = Model.complain_id })" class="btn btn-info btn-action" id="take-action-@Model.complain_id">Take Action</a>
+        <dl class="dl-horizontal">
+            <dt>
+                <strong>Name of the Item:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name_Of_the_Item)
+            </dd>
+
+            <dt>
+                <strong>Description:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+
+            <dt>
+                <strong>Location:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.location)
+            </dd>
+
+            <dt>
+                <strong>Status:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.status)
+            </dd>
+
+            <dt>
+                <strong>Image:</strong>
+            </dt>
+            <dd>
+                @if (Model.image_data != null)
+                {
+                    var base64Image = Convert.ToBase64String(Model.image_data);
+                    var imgSrc = $"data:image;base64,{base64Image}";
+                    <img src="@imgSrc" alt="Complain Image" class="complain-image" />
+                }
+            </dd>
+
+            <dt>
+                <strong>Priority:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Priority.priority1)
+            </dd>
+
+            <dt>
+                <strong>Repaired Status:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Repaired_Staus.Status)
+            </dd>
+
+            <dt>
+                <strong>User:</strong>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AllUser.username)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", "StuffComplains", new { id = Model.complain_id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back to List", "Index", "StuffComplains", null, new { @class = "btn btn-secondary" })
+    </p>
+</div>

@@ -1,0 +1,51 @@
+﻿@model LabMaintanance3.Models.tech2
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tech2</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.technicianName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.technicianName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.action_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.action_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.action_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Complain.Name_Of_the_Item)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Complain.Name_Of_the_Item)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.action_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

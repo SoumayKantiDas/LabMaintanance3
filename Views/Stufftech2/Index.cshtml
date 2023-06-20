@@ -1,0 +1,101 @@
+﻿@model IEnumerable<LabMaintanance3.Models.tech2>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/stuff_layout.cshtml";
+}
+
+<style>
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .table td {
+            border-bottom: 1px solid #ddd;
+        }
+
+            .table td:last-child {
+                text-align: center;
+            }
+
+    .edit-button {
+        background-color: #007bff;
+    }
+
+    .details-button {
+        background-color: #17a2b8;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+    }
+
+    .table a {
+        margin-right: 5px;
+        padding: 6px 12px;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+    }
+
+        .table a:last-child {
+            margin-right: 0;
+        }
+</style>
+
+<h2>Action List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Technician Name
+        </th>
+        <th>
+            Action_Description
+        </th>
+        <th>
+            Action_Date
+        </th>
+        <th>
+            Name_Of_the_Item
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.technicianName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.action_description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.action_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complain.Name_Of_the_Item)
+            </td>
+         
+        </tr>
+    }
+</table>

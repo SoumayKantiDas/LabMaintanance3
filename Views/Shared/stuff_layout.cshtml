@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap-css") <!-- Include Bootstrap CSS -->
+    <style>
+        body {
+            background-color: #f1f1f1;
+            margin: 20px;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .container.body-content {
+            margin-bottom: 60px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .nav-link.btn-smooth:hover {
+            background-color: #e9ecef; /* Set the hover background color */
+            color: #212529; /* Set the hover text color */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="nav-link btn btn-sm btn-bold btn-smooth" href="@Url.Action("Index", "StuffComplains")" type="button">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-sm btn-bold btn-smooth" href="@Url.Action("Create", "StuffComplains")" type="button">Create_Complains</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-sm btn-bold btn-smooth" href="@Url.Action("Index", "Stufftech2")" type="button">Actions</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 Lab Maintanance Website. All CopyRights are reserved by Group 9.</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap-js") <!-- Include Bootstrap JavaScript -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>
