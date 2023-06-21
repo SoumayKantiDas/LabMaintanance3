@@ -56,6 +56,19 @@ namespace LabMaintanance3.Controllers
             else
             {
                 // Authentication succeeded
+
+                // Store user information in session
+                Session["UserId"] = user.user_id;
+                Session["Username"] = user.username;
+                Session["RoleId"] = user.role_id;
+
+                // Create a cookie to remember the user
+                HttpCookie userCookie = new HttpCookie("UserInfo");
+                userCookie["UserId"] = user.user_id.ToString();
+                userCookie.Expires = DateTime.Now.AddDays(7); // Set the cookie expiration time
+
+                Response.Cookies.Add(userCookie); // Add the cookie to the response
+
                 // Redirect based on user role
                 switch (user.role_id)
                 {
